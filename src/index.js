@@ -1,8 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
+
+import { Routes } from './modules/routes';
+import { TopBar } from './modules/components/topBar';
+import { CurrentUserProvider } from './modules/contexts/currentUser';
+import { CurrentUserChecker } from './modules/components/currentUserChecker';
+
+const App = () => {
+  return (
+    <CurrentUserProvider>
+      <CurrentUserChecker>
+        <BrowserRouter>
+          <TopBar />
+          <Routes />
+        </BrowserRouter>
+      </CurrentUserChecker>
+    </CurrentUserProvider>
+  );
+};
 
 ReactDOM.render(
   <React.StrictMode>
